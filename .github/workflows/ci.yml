@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Verify Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Install dependencies
+        env:
+          NODE_NO_WARNINGS: 1
+        run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
+
+      - name: Lint source files
+        run: yarn lint
+
+      - name: Check types
+        run: |
+          yarn workspace @repo/web run check-types
+          yarn workspace @repo/ui run check-types
+
+      - name: Run unit tests
+        run: |
+          yarn workspace @repo/web run test:coverage
+          yarn workspace @repo/ui run test:coverage
+          yarn workspace @repo/data run test:coverage
+
+  e2e:
+    name: Run End-to-End Tests
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Install dependencies
+        env:
+          NODE_NO_WARNINGS: 1
+        run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+        working-directory: apps/web
+
+      - name: Run end-to-end tests
+        run: yarn workspace @repo/web run test:e2e
+        env:
+          SANITY_STUDIO_PROJECT_ID: test
+          SANITY_STUDIO_DATASET_ID: production
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/
+          retention-days: 7
+
+  bundle-size:
+    name: Verify Bundle Size
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Install dependencies
+        env:
+          NODE_NO_WARNINGS: 1
+        run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
+
+      - name: Build application
+        run: yarn workspace @repo/web run build
+        env:
+          SANITY_STUDIO_PROJECT_ID: test
+          SANITY_STUDIO_DATASET_ID: production
+
+      - name: Check bundle size
+        run: yarn workspace @repo/web run size-limit

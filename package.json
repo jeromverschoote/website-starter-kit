@@ -1,0 +1,46 @@
+{
+  "name": "website-starter-kit",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "web:dev": "yarn workspace web run dev",
+    "web:build": "yarn workspace web run build",
+    "test": "turbo test",
+    "test:coverage": "turbo test:coverage",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.10",
+    "@tailwindcss/postcss": "^4.1.10",
+    "react": "19.2.2",
+    "react-dom": "19.2.2",
+    "styled-components": "^6",
+    "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "prettier": "^3.5.3",
+    "tsx": "^4.20.4",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@1.22.22",
+  "workspaces": [
+    "apps/*",
+    "config/*",
+    "packages/*"
+  ],
+  "nohoist": [
+    "**/react",
+    "**/react/**",
+    "**/react-dom",
+    "**/react-dom/**",
+    "**/@sanity/**"
+  ]
+}

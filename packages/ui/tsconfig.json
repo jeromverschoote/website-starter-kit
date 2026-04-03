@@ -1,0 +1,10 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  },
+  "include": ["src", "../../apps/web/src/components/strapi-blocks-renderer"],
+  "exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.test.tsx", "src/test/**/*"]
+}

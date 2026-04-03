@@ -1,0 +1,58 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalEnv": [
+    "FONTAWESOME_NPM_AUTH_TOKEN",
+    "NEXT_WEBHOOK_API_TOKEN",
+    "GOOGLE_API_KEY",
+    "GOOGLE_TAG_MANAGER_ID",
+    "GOOGLE_ANALYTICS_ID",
+    "GOOGLE_MAPS_EMBED_API_KEY",
+    "CI",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "NEXT_RUNTIME",
+    "NEXT_PUBLIC_POSTHOG_KEY",
+    "NEXT_PUBLIC_POSTHOG_HOST",
+    "NEXT_SITEMAP_BASE_DOMAIN_URL",
+    "API_ACCESS_TOKEN",
+    "AUTHOR_NAME",
+    "AUTHOR_URL",
+    "NOTION_API_TOKEN",
+    "NOTION_CONTACT_REQUESTS_DATABASE_ID",
+    "SANITY_STUDIO_PROJECT_ID",
+    "SANITY_STUDIO_DATASET_ID",
+    "SANITY_REVALIDATE_SECRET",
+    "SLACK_WEBHOOK_URL"
+  ],
+  "globalDependencies": [".env"],
+  "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"]
+    },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": ["coverage/**"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "test:e2e": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "cache": false
+    }
+  }
+}

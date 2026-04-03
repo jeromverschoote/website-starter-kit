@@ -1,0 +1,21 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+  "cSpell.words": [
+    "FONTAWESOME",
+    "fortawesome",
+    "hookform",
+    "languagedetector",
+    "lucide",
+    "nextjs",
+    "opengraph",
+    "POSTHOG",
+    "Ratelimit",
+    "tailwindcss",
+    "UPSTASH",
+    "videoid"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

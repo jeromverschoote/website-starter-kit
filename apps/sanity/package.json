@@ -1,0 +1,59 @@
+{
+  "name": "@repo/sanity",
+  "version": "1.0.0",
+  "private": true,
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "types:generate": "sanity schema extract --enforce-required-fields --path ../web/src/types/sanity-schemas.json && sanity typegen generate",
+    "import-dataset": "sanity dataset import datasets/20250821-production-collection-dump.ndjson production --replace --allow-failing-assets"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@fortawesome/duotone-light-svg-icons": "^6.7.2",
+    "@fortawesome/duotone-regular-svg-icons": "^6.7.2",
+    "@fortawesome/duotone-thin-svg-icons": "^6.7.2",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/pro-light-svg-icons": "^6.7.2",
+    "@fortawesome/pro-regular-svg-icons": "^6.7.2",
+    "@fortawesome/pro-solid-svg-icons": "^6.7.2",
+    "@fortawesome/pro-thin-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@fortawesome/sharp-light-svg-icons": "^6.7.2",
+    "@fortawesome/sharp-regular-svg-icons": "^6.7.2",
+    "@fortawesome/sharp-solid-svg-icons": "^6.7.2",
+    "@fortawesome/sharp-thin-svg-icons": "^6.7.2",
+    "@sanity/document-internationalization": "^3.3.1",
+    "@sanity/icons": "^3.7.0",
+    "@sanity/vision": "^5.17.1",
+    "eslint-config-prettier": "^10.1.1",
+    "react": "19.2.2",
+    "react-dom": "19.2.2",
+    "sanity": "^5.17.1",
+    "sanity-plugin-media": "^3.0.2",
+    "sanity-plugin-vercel-deploy": "^3.3.4",
+    "sanity-plugin-webhooks-trigger": "^0.3.1",
+    "styled-components": "^6.1.17"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^5.0.2",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "eslint": "^9.9.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.1.6"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}

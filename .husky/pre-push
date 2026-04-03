@@ -1,0 +1,15 @@
+BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||')
+
+if [ "$BRANCH" = "main" ]; then
+  echo "Direct pushes to 'main' are not allowed. Push to 'development' and open a pull request."
+  exit 1
+fi
+
+echo "Running build..."
+yarn workspace @repo/web run build
+
+echo "Running unit & component tests..."
+yarn test
+
+echo "Running E2E tests..."
+yarn workspace @repo/web run test:e2e
