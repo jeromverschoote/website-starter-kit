@@ -74,8 +74,9 @@ and on your host, set the same values as secrets.
 | `yarn dev` | Run everything in dev (Turbo) |
 | `yarn workspace @repo/web dev` | Next.js app only (port 3000) |
 | `yarn workspace @repo/sanity dev` | Sanity Studio |
+| `yarn verify` | **Definition of done:** lint → check-types → test (cached) |
 | `yarn lint` | Lint (type-aware ESLint, errors fail) |
-| `yarn workspace @repo/web check-types` | TypeScript check |
+| `yarn check-types` | TypeScript check across workspaces (cached) |
 | `yarn test` | Unit/component tests (Vitest) |
 | `yarn workspace @repo/web test:e2e` | Playwright e2e |
 | `yarn workspace @repo/web build` | Production build |

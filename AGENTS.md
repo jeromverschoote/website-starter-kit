@@ -1,5 +1,12 @@
 # Agent Instructions
 
+## Definition of done
+
+Run **`yarn verify`** (turbo: `lint` → `check-types` → `test`, cached and
+affected-only) and make sure it passes before handing back any change. This is
+the single "done" gate; it's also what the pre-push hook runs. CI additionally
+enforces coverage, e2e, and bundle size.
+
 ## New repository setup
 
 This is a template. When working in a repository that was just created from it —

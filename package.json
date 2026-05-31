@@ -5,6 +5,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "check-types": "turbo check-types",
+    "verify": "turbo lint check-types test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "web:dev": "yarn workspace web run dev",
     "web:build": "yarn workspace web run build",

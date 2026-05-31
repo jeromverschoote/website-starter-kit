@@ -56,8 +56,8 @@ maps to a real placeholder, secret, or config in the codebase.
 
 ## 6. Install & verify a green baseline
 - [ ] `yarn install` (runs `husky` via `prepare`, wiring up the pre-push hook).
-- [ ] `yarn lint && yarn workspace @repo/web check-types && yarn workspace @repo/ui check-types`.
-- [ ] `yarn test` (unit) and `yarn workspace @repo/web build`.
+- [ ] `yarn verify` — the single "done" gate (lint → check-types → test).
+- [ ] `yarn workspace @repo/web build` (also covered by the CI bundle-size job).
 - [ ] Re-baseline the bundle budget in `apps/web/.size-limit.json` (currently `2.35 MB`) once the app's real size is known.
 
 ## 7. Fill the empty gates

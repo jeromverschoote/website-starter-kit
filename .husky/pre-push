@@ -5,15 +5,7 @@ if [ "$BRANCH" = "main" ]; then
   exit 1
 fi
 
-# Fast, local pre-push gate: lint -> types -> unit tests.
-# Heavier gates (build, e2e, bundle-size) run in CI on the pull request.
-
-echo "Running lint..."
-yarn lint
-
-echo "Running type checks..."
-yarn workspace @repo/web run check-types
-yarn workspace @repo/ui run check-types
-
-echo "Running unit & component tests..."
-yarn test
+# The one "definition of done" gate: lint -> check-types -> unit tests (cached,
+# affected-only via turbo). Heavier gates (build, e2e, bundle-size) run in CI.
+echo "Running verify (lint, check-types, test)..."
+yarn verify
