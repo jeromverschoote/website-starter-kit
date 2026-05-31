@@ -7,6 +7,19 @@ affected-only) and make sure it passes before handing back any change. This is
 the single "done" gate; it's also what the pre-push hook runs. CI additionally
 enforces coverage, e2e, and bundle size.
 
+## Delivering changes (task → PR)
+
+`main` is protected — never commit to it directly. Ship every change as one
+bounded PR: branch from `development` → implement → `yarn verify` (green) → open
+a PR into `main`. The `new-feature` skill codifies this loop end to end, and
+`.github/PULL_REQUEST_TEMPLATE.md` is the PR body. The PR (gated by CI + branch
+protection), not the local edit, is the unit of work.
+
+Bounded, verifiable chores (a section from a Sanity model, copy/dictionary
+updates, dependency bumps) can run as remote/background runs that open PRs;
+architectural and exploratory work stays at the keyboard. See
+[`docs/delegating-work.md`](docs/delegating-work.md).
+
 ## New repository setup
 
 This is a template. When working in a repository that was just created from it —
