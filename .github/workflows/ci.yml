@@ -62,12 +62,10 @@ jobs:
       - name: Install Playwright browsers
         working-directory: apps/web
         timeout-minutes: 8
-        # NEEDRESTART_MODE/DEBIAN_FRONTEND keep `--with-deps` apt installs from
-        # hanging on the interactive needrestart/debconf prompt on Ubuntu runners.
-        env:
-          DEBIAN_FRONTEND: noninteractive
-          NEEDRESTART_MODE: a
-        run: npx playwright install --with-deps chromium
+        # No --with-deps: GitHub's ubuntu-latest image already ships the system
+        # libraries Chromium needs, and the apt step --with-deps triggers hangs
+        # on the runner. This installs just the browser binary (a plain download).
+        run: npx playwright install chromium
 
       - name: Run end-to-end tests
         run: yarn workspace @repo/web run test:e2e
