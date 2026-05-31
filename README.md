@@ -75,6 +75,7 @@ and on your host, set the same values as secrets.
 | `yarn workspace @repo/web dev` | Next.js app only (port 3000) |
 | `yarn workspace @repo/sanity dev` | Sanity Studio |
 | `yarn verify` | **Definition of done:** lint → check-types → test (cached) |
+| `yarn verify:affected` | Same, but only packages changed since `main` (fast loop) |
 | `yarn lint` | Lint (type-aware ESLint, errors fail) |
 | `yarn check-types` | TypeScript check across workspaces (cached) |
 | `yarn test` | Unit/component tests (Vitest) |
@@ -114,5 +115,11 @@ docs/
   demand via the `react-guidelines` skill).
 - **Branching:** `main` is protected — work on `development`, open a PR. CI must
   pass before merge.
+- **Fast checks:** CI runs `--affected` (only changed packages + dependents).
+  Enable [Turbo remote caching](https://vercel.com/docs/monorepos/remote-caching)
+  for instant cross-machine cache hits: add a repo **secret** `TURBO_TOKEN` and
+  `TURBO_TEAM` (the Vercel team slug — as a secret or variable; for a self-hosted
+  cache, also set `TURBO_API`).
+  Until then CI uses the local cache only.
 - **Agents:** [`AGENTS.md`](AGENTS.md) is the source of truth (`CLAUDE.md`
   re-exports it).

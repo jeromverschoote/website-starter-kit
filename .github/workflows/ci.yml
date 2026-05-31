@@ -6,6 +6,16 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  # Turbo remote cache. Set repo secret TURBO_TOKEN and repo variable TURBO_TEAM
+  # to enable (Vercel: https://vercel.com/docs/monorepos/remote-caching; for a
+  # self-hosted cache also set TURBO_API). Empty = local cache only (no-op).
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  # Accept TURBO_TEAM as either a repo variable or a secret.
+  TURBO_TEAM: ${{ vars.TURBO_TEAM || secrets.TURBO_TEAM }}
+  # Base for `--affected`: the PR base on pull_request, the prior commit on push.
+  TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+
 jobs:
   quality:
     name: Verify Code Quality
@@ -13,6 +23,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so `--affected` can diff against the base
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -25,17 +37,16 @@ jobs:
           NODE_NO_WARNINGS: 1
         run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
 
-      - name: Lint source files
-        run: yarn lint
+      # Affected-only: only packages changed since the base (and their dependents)
+      # run; everything else is a remote-cache hit. Keeps the green signal fast.
+      - name: Lint (affected)
+        run: yarn turbo run lint --affected
 
-      - name: Check types
-        run: yarn check-types
+      - name: Check types (affected)
+        run: yarn turbo run check-types --affected
 
-      - name: Run unit tests
-        run: |
-          yarn workspace @repo/web run test:coverage
-          yarn workspace @repo/ui run test:coverage
-          yarn workspace @repo/data run test:coverage
+      - name: Run unit tests (affected)
+        run: yarn turbo run test:coverage --affected
 
   e2e:
     name: Run End-to-End Tests
@@ -115,7 +126,7 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
 
       - name: Build application
-        run: yarn workspace @repo/web run build
+        run: yarn turbo run build --filter=@repo/web
         env:
           SANITY_STUDIO_PROJECT_ID: test
           SANITY_STUDIO_DATASET_ID: production
