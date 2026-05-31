@@ -125,7 +125,7 @@ jobs:
         run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
 
       - name: Build application
-        run: yarn workspace @repo/web run build
+        run: yarn turbo run build --filter=@repo/web
         env:
           SANITY_STUDIO_PROJECT_ID: test
           SANITY_STUDIO_DATASET_ID: production
