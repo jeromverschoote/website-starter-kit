@@ -1,0 +1,43 @@
+import sanity from '@repo/data/sanity';
+
+import { getDictionary, type TLocale } from 'config/i18n';
+
+import { styles } from '.';
+import { {{ camelCase feature }}IntroQuery } from '../../{{ kebabCase feature }}-landing-page.queries';
+
+type TProps = { params: Promise<{ locale: TLocale }> };
+
+type T{{ pascalCase feature }}Intro = { heading?: string; description?: string };
+
+/**
+ * Async server component that owns its Sanity fetch and renders gracefully when
+ * there is no data. Fetch translations and CMS data in parallel.
+ */
+const {{ pascalCase feature }}Intro = async (props: TProps) => {
+  const { params } = props;
+  const { locale } = await params;
+
+  const [t, [error, data]] = await Promise.all([
+    getDictionary(locale),
+    sanity.get<T{{ pascalCase feature }}Intro>({{ camelCase feature }}IntroQuery, { locale }),
+  ]);
+
+  if (error) {
+    console.error(JSON.stringify(error));
+  }
+
+  const intro = data?.[0];
+
+  return (
+    <section className={styles.container}>
+      <h1 className={styles.heading}>
+        {intro?.heading ?? t.view.{{ camelCase feature }}.intro.heading}
+      </h1>
+      <p className={styles.description}>
+        {intro?.description ?? t.view.{{ camelCase feature }}.intro.description}
+      </p>
+    </section>
+  );
+};
+
+export default {{ pascalCase feature }}Intro;

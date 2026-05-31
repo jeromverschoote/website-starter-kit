@@ -271,15 +271,12 @@ async function main() {
     remaining.push("Apply branch protection to `main` (re-run with --protect, or see docs/init-checklist.md).");
   }
 
-  // 7. Optional: verify a green baseline.
+  // 7. Optional: verify a green baseline (the single "done" gate).
   if (flags.verify) {
-    console.log("\nVerifying...\n");
-    run("yarn lint");
-    run("yarn workspace @repo/web check-types");
-    run("yarn workspace @repo/ui check-types");
-    run("yarn test");
+    console.log("\nVerifying (yarn verify)...\n");
+    run("yarn verify");
   } else {
-    remaining.push("Verify the baseline: yarn lint && check-types && yarn test && build.");
+    remaining.push("Verify the baseline: `yarn verify` (lint, check-types, test).");
   }
 
   // Always-manual follow-ups.

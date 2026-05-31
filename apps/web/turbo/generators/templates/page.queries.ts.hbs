@@ -1,0 +1,7 @@
+// GROQ queries for the {{ humanize feature }} view live here (co-located, never inline).
+export const {{ camelCase feature }}IntroQuery = `
+  *[_type == "{{ kebabCase feature }}-page" && language == $locale][0]{
+    heading,
+    description
+  }
+`;

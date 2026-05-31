@@ -1,0 +1,9 @@
+import type { Metadata } from 'next';
+
+export const generateMetadata = (): Metadata => {
+  return {
+    title: '{{ humanize feature }}',
+  };
+};
+
+export { default } from 'views/{{ kebabCase feature }}/landing';

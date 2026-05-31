@@ -1,5 +1,12 @@
 # Agent Instructions
 
+## Definition of done
+
+Run **`yarn verify`** (turbo: `lint` → `check-types` → `test`, cached and
+affected-only) and make sure it passes before handing back any change. This is
+the single "done" gate; it's also what the pre-push hook runs. CI additionally
+enforces coverage, e2e, and bundle size.
+
 ## New repository setup
 
 This is a template. When working in a repository that was just created from it —
@@ -17,6 +24,28 @@ The script (`scripts/init-project.ts`) and the human-readable
 "fresh" while the root `package.json` name is still `website-starter-kit`; once
 renamed, setup is considered done. Proactively surface this — do not wait to be
 pointed at it.
+
+## Scaffolding new units
+
+Do not hand-roll the files for repeatable units — run the generator. Each
+encodes this repo's layout, naming, and registration so output is identical
+whether a human or an agent runs it:
+
+- `turbo gen component` — UI component in `packages/ui` (+ package.json export)
+- `turbo gen view --args <feature>` — page/view in `apps/web` (+ route + dictionary keys)
+- `turbo gen section --args <name>` — Sanity section in `apps/sanity` (+ schema index)
+- `turbo gen data-source --args <name>` — data module in `packages/data` (+ export)
+
+The `scaffold` skill documents the prompts/args; run `turbo gen` to list them.
+
+## Component & view structure
+
+Follow the structural conventions in [`docs/component-guidelines.md`](docs/component-guidelines.md)
+for every component, section, view, and layout: a folder per component with a
+sibling `.styles.ts` and `index.ts`, a view's sections under `_components/` with
+co-located `.queries.ts`, async server-component sections that own their Sanity
+fetch, page composition with `<Suspense>`, and `loading`/`error`/`not-found`
+route handlers that delegate to `layouts/`. Scaffold components with `turbo gen`.
 
 ## React guidelines
 

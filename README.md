@@ -74,13 +74,18 @@ and on your host, set the same values as secrets.
 | `yarn dev` | Run everything in dev (Turbo) |
 | `yarn workspace @repo/web dev` | Next.js app only (port 3000) |
 | `yarn workspace @repo/sanity dev` | Sanity Studio |
+| `yarn verify` | **Definition of done:** lint → check-types → test (cached) |
 | `yarn lint` | Lint (type-aware ESLint, errors fail) |
-| `yarn workspace @repo/web check-types` | TypeScript check |
+| `yarn check-types` | TypeScript check across workspaces (cached) |
 | `yarn test` | Unit/component tests (Vitest) |
 | `yarn workspace @repo/web test:e2e` | Playwright e2e |
 | `yarn workspace @repo/web build` | Production build |
 | `yarn workspace @repo/sanity types:generate` | Regenerate Sanity types |
 | `yarn init:project` | Scaffold a new project from this template |
+| `turbo gen component` | Scaffold a UI component (folder, test, index, exports) |
+| `turbo gen view --args <feature>` | Scaffold a page/view + route + dictionary keys |
+| `turbo gen section --args <name>` | Scaffold a Sanity section + register it |
+| `turbo gen data-source --args <name>` | Scaffold a data-layer source + export |
 
 ## Project structure
 
@@ -101,6 +106,9 @@ docs/
 
 ## Conventions
 
+- **Structure:** follow [`docs/component-guidelines.md`](docs/component-guidelines.md)
+  for component/view/section/layout layout (folder + `.styles.ts` + `index.ts`,
+  `_components/` sections, `.queries.ts`, Suspense composition, route handlers).
 - **React:** follow [`docs/react-guidelines.md`](docs/react-guidelines.md). The
   enforceable rules are wired into ESLint; the rest is in that guide (load on
   demand via the `react-guidelines` skill).

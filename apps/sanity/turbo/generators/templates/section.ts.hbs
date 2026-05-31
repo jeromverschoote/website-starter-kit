@@ -1,0 +1,25 @@
+import { defineField } from 'sanity';
+import { BlockElementIcon } from '@sanity/icons';
+
+import asSectionModel from '../hocs/as-section-model';
+
+export default asSectionModel({
+  name: '{{ kebabCase name }}-section',
+  title: '{{ humanize name }}',
+  description: 'TODO: describe what this section renders.',
+  icon: BlockElementIcon,
+  fields: [
+    defineField({
+      name: 'heading',
+      type: 'string',
+      title: 'Heading',
+      description: 'Main heading for this section.',
+    }),
+  ],
+  preview: {
+    select: { title: 'heading' },
+    prepare({ title }) {
+      return { title: title ?? '{{ humanize name }}', subtitle: '{{ humanize name }}' };
+    },
+  },
+});

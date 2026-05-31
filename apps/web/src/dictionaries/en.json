@@ -8,12 +8,22 @@
   },
   "layout": {
     "notFound": {
+      "heading": "Page not found",
       "description": "It looks like you're lost.",
       "button": "Back to homepage."
     },
     "error": {
+      "heading": "Something went wrong",
       "description": "It looks like something went wrong.",
       "button": "Back to homepage."
+    }
+  },
+  "view": {
+    "home": {
+      "hero": {
+        "heading": "Welcome",
+        "description": "Replace this with your home page content."
+      }
     }
   },
   "component": {

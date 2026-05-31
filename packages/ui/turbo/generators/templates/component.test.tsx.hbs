@@ -1,0 +1,17 @@
+import { render, screen } from '@testing-library/react';
+
+import { describe, expect, it } from 'vitest';
+
+import {{ pascalCase name }} from './{{ kebabCase name }}';
+
+describe('{{ pascalCase name }}', () => {
+  it('renders its children', () => {
+    render(<{{ pascalCase name }}>content</{{ pascalCase name }}>);
+    expect(screen.getByText('content')).toBeInTheDocument();
+  });
+
+  it('forwards a custom className', () => {
+    render(<{{ pascalCase name }} className="custom-class">content</{{ pascalCase name }}>);
+    expect(screen.getByText('content')).toHaveClass('custom-class');
+  });
+});

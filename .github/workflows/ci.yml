@@ -29,9 +29,7 @@ jobs:
         run: yarn lint
 
       - name: Check types
-        run: |
-          yarn workspace @repo/web run check-types
-          yarn workspace @repo/ui run check-types
+        run: yarn check-types
 
       - name: Run unit tests
         run: |
