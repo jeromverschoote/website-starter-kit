@@ -117,8 +117,9 @@ docs/
   pass before merge.
 - **Fast checks:** CI runs `--affected` (only changed packages + dependents).
   Enable [Turbo remote caching](https://vercel.com/docs/monorepos/remote-caching)
-  for instant cross-machine cache hits: add a repo **secret** `TURBO_TOKEN` and a
-  repo **variable** `TURBO_TEAM` (for a self-hosted cache, also set `TURBO_API`).
+  for instant cross-machine cache hits: add a repo **secret** `TURBO_TOKEN` and
+  `TURBO_TEAM` (the Vercel team slug — as a secret or variable; for a self-hosted
+  cache, also set `TURBO_API`).
   Until then CI uses the local cache only.
 - **Agents:** [`AGENTS.md`](AGENTS.md) is the source of truth (`CLAUDE.md`
   re-exports it).

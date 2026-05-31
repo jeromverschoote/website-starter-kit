@@ -11,7 +11,8 @@ env:
   # to enable (Vercel: https://vercel.com/docs/monorepos/remote-caching; for a
   # self-hosted cache also set TURBO_API). Empty = local cache only (no-op).
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+  # Accept TURBO_TEAM as either a repo variable or a secret.
+  TURBO_TEAM: ${{ vars.TURBO_TEAM || secrets.TURBO_TEAM }}
   # Base for `--affected`: the PR base on pull_request, the prior commit on push.
   TURBO_SCM_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
 
