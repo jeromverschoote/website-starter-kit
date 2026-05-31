@@ -1,6 +1,6 @@
 import { Viewport } from 'next';
 
-export const generateMetadata = async () => {
+export const generateMetadata = () => {
   return {
     title: 'Home',
     description: 'Welcome to the website.',

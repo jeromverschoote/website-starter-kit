@@ -1,7 +1,7 @@
 import { Viewport } from 'next';
 import './globals.css';
 
-export const generateMetadata = async () => {
+export const generateMetadata = () => {
   const author = { name: process.env.AUTHOR_NAME, url: process.env.AUTHOR_URL };
 
   return {

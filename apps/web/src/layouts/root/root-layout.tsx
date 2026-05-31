@@ -37,10 +37,10 @@ const RootLayout = (props: TProps) => {
           className={styles.html}
         >
           {process.env.GOOGLE_TAG_MANAGER_ID && (
-            <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_ID as string} />
+            <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_ID} />
           )}
           {process.env.GOOGLE_ANALYTICS_ID && (
-            <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID as string} />
+            <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
           )}
 
           <body className={toClassName(font.className, styles.body)}>
