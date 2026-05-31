@@ -18,6 +18,24 @@ The script (`scripts/init-project.ts`) and the human-readable
 renamed, setup is considered done. Proactively surface this — do not wait to be
 pointed at it.
 
+## Scaffolding new units
+
+Do not hand-roll the files for repeatable units — run the generator. `turbo gen
+component` scaffolds a UI component (folder + test + index + optional styles) and
+registers it in `packages/ui` exports. Headless: `turbo gen component --args
+<name> <withStyles:true|false>`. The `scaffold` skill documents the available
+generators; run `turbo gen` to list them. This keeps generated code consistent
+whether a human or an agent creates it.
+
+## Component & view structure
+
+Follow the structural conventions in [`docs/component-guidelines.md`](docs/component-guidelines.md)
+for every component, section, view, and layout: a folder per component with a
+sibling `.styles.ts` and `index.ts`, a view's sections under `_components/` with
+co-located `.queries.ts`, async server-component sections that own their Sanity
+fetch, page composition with `<Suspense>`, and `loading`/`error`/`not-found`
+route handlers that delegate to `layouts/`. Scaffold components with `turbo gen`.
+
 ## React guidelines
 
 All React code written in this project follows the engineering guidelines in [`docs/react-guidelines.md`](docs/react-guidelines.md).

@@ -1,4 +1,4 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import type { ComponentType } from 'react';
 import type { FieldDefinition, FieldGroupDefinition, PreviewConfig } from 'sanity';
 
@@ -11,6 +11,23 @@ type TProps = {
   groups?: FieldGroupDefinition[];
   preview?: PreviewConfig;
 };
+
+/**
+ * Optional anchor id, added to every section. Lets editors deep-link to a
+ * section via a URL hash (e.g. #about-us); the front-end renderer wraps the
+ * section in an element carrying this id.
+ */
+const sectionIdField: FieldDefinition = defineField({
+  name: 'sectionId',
+  type: 'string',
+  title: 'Section ID',
+  description:
+    'Optional anchor ID for this section (e.g. "about-us"). Used to deep-link to it via a URL hash (#about-us).',
+  validation: (rule) =>
+    rule
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { name: 'slug', invert: false })
+      .warning('Use lowercase letters, numbers and hyphens only (e.g. "about-us").'),
+});
 
 /**
  * HOC for creating page section object types.
@@ -27,7 +44,7 @@ const asSectionModel = (props: TProps) => {
     description,
     icon,
     groups: [...(groups ?? [])],
-    fields,
+    fields: [sectionIdField, ...fields],
     preview,
   });
 };

@@ -1,0 +1,24 @@
+import { ReactNode } from 'react';
+{{#if withStyles}}
+
+import { toClassName } from 'helpers/format';
+
+import { styles } from '.';
+{{/if}}
+
+export type TProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+const {{ pascalCase name }} = (props: TProps) => {
+  const { children, className } = props;
+
+  return (
+    <div className={{#if withStyles}}{toClassName(styles.container, className)}{{else}}{className}{{/if}}>
+      {children}
+    </div>
+  );
+};
+
+export default {{ pascalCase name }};

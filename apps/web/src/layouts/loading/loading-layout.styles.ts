@@ -1,5 +1,5 @@
 const styles = {
-  heroFallback: 'min-h-screen',
+  container: 'min-h-screen animate-pulse',
 };
 
 export default styles;

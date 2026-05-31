@@ -81,6 +81,7 @@ and on your host, set the same values as secrets.
 | `yarn workspace @repo/web build` | Production build |
 | `yarn workspace @repo/sanity types:generate` | Regenerate Sanity types |
 | `yarn init:project` | Scaffold a new project from this template |
+| `turbo gen component` | Scaffold a UI component (folder, test, index, exports) |
 
 ## Project structure
 
@@ -101,6 +102,9 @@ docs/
 
 ## Conventions
 
+- **Structure:** follow [`docs/component-guidelines.md`](docs/component-guidelines.md)
+  for component/view/section/layout layout (folder + `.styles.ts` + `index.ts`,
+  `_components/` sections, `.queries.ts`, Suspense composition, route handlers).
 - **React:** follow [`docs/react-guidelines.md`](docs/react-guidelines.md). The
   enforceable rules are wired into ESLint; the rest is in that guide (load on
   demand via the `react-guidelines` skill).
