@@ -39,6 +39,8 @@ maps to a real placeholder, secret, or config in the codebase.
 - [ ] Add **GitHub Actions secrets** for everything CI needs to install/build:
       `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET_ID`, plus any build-time
       vars listed in `turbo.json`'s `globalEnv`.
+- [ ] (Recommended) Enable Turbo remote caching for fast CI: add repo secret
+      `TURBO_TOKEN` + repo variable `TURBO_TEAM` (self-hosted: also `TURBO_API`).
 - [ ] Create the `development` branch (the pre-push hook and PR flow assume `main` ← PR ← `development`).
 - [ ] Apply branch protection to the new repo's `main`:
   ```bash
