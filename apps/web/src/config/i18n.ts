@@ -14,7 +14,7 @@ const dictionaries: Record<TLocale, () => Promise<TDictionary>> =
       locale,
       () =>
         import(`../dictionaries/${locale}.json`).then(
-          (module) => module.default as TDictionary,
+          (module: { default: TDictionary }) => module.default,
         ),
     ]),
   ) as Record<TLocale, () => Promise<TDictionary>>;

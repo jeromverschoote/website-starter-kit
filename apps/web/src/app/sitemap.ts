@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 import i18n from 'config/i18n';
 
-const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+const sitemap = (): MetadataRoute.Sitemap => {
   const base = process.env.NEXT_SITEMAP_BASE_DOMAIN_URL;
 
   const languages = i18n.locales;

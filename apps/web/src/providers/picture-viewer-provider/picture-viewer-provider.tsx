@@ -1,6 +1,13 @@
 'use client';
 
-import { createContext, FC, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 
 import Image from 'next/image';
 
@@ -76,24 +83,21 @@ const PictureViewerProvider: FC<TProps> = (props) => {
   });
 
   useKeyPress('Escape', () => {
-    if (isShown === false) {
+    if (!isShown) {
       return;
     }
 
     setIsShown(false);
   });
 
+  // setState setters are stable; only `selector` changes (Ch. 8).
+  const value = useMemo(
+    () => ({ setPictures, selector, setSelector, setIsShown }),
+    [selector],
+  );
+
   return (
-    <Context.Provider
-      value={{
-        setPictures,
-
-        selector,
-        setSelector,
-
-        setIsShown,
-      }}
-    >
+    <Context.Provider value={value}>
       {children}
 
       <div className="relative duration-300">
@@ -106,9 +110,9 @@ const PictureViewerProvider: FC<TProps> = (props) => {
           )}
         >
           <div className={styles.viewer.content}>
-            {pictures[selector as number]?.asset?.url && (
+            {pictures[selector as number]?.asset.url && (
               <Image
-                src={pictures[selector as number]?.asset?.url as string}
+                src={pictures[selector as number]?.asset.url as string}
                 alt=""
                 layout="fill"
                 objectFit="contain"
@@ -136,7 +140,7 @@ const PictureViewerProvider: FC<TProps> = (props) => {
                     selector === 0 && 'opacity-20',
                   )}
                   disabled={selector === 0}
-                  onClick={() => setSelector((selector as number) - 1)}
+                  onClick={() => { setSelector((selector as number) - 1); }}
                 >
                   <Icon accessor="chevron-left" />
                 </button>
@@ -147,7 +151,7 @@ const PictureViewerProvider: FC<TProps> = (props) => {
                     selector === pictures.length - 1 && 'opacity-20',
                   )}
                   disabled={selector === pictures.length - 1}
-                  onClick={() => setSelector((selector as number) + 1)}
+                  onClick={() => { setSelector((selector as number) + 1); }}
                 >
                   <Icon accessor="chevron-right" />
                 </button>

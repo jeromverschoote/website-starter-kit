@@ -12,6 +12,6 @@ export const useKeyPress = (key: string, effect: () => void) => {
 
   useEffect(() => {
     document.addEventListener('keydown', callback);
-    return () => document.removeEventListener('keydown', callback);
+    return () => { document.removeEventListener('keydown', callback); };
   }, [callback, key]);
 };

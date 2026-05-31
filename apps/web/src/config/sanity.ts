@@ -15,7 +15,7 @@ const get = async <T>(query: string): WithErrorResult<T[]> => {
 
   try {
     const response = await fetch(url, options);
-    const result = await response.json();
+    const result = (await response.json()) as T[];
     return [undefined, result];
   } catch (err) {
     return [err as Error, undefined];

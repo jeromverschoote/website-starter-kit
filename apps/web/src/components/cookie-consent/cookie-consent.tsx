@@ -59,6 +59,9 @@ const CookieConsent = (props: TProps) => {
   };
 
   useEffect(() => {
+    // Reads localStorage, which is unavailable during SSR, so consent must be
+    // synced into state on the client after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setConsentGiven(cookieConsentGiven());
   }, []);
 
@@ -71,7 +74,10 @@ const CookieConsent = (props: TProps) => {
   }, [consentGiven]);
 
   useEffect(() => {
+    // localStorage is client-only; open the banner after mount when the visitor
+    // has not yet decided.
     if (cookieConsentGiven() === 'undecided') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsOpen(true);
     }
   }, []);

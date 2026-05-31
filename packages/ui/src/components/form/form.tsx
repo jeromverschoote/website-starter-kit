@@ -27,7 +27,7 @@ type FormFieldContextValue<
   name: TName;
 };
 
-const FormFieldContext = React.createContext<FormFieldContextValue>(
+const FormFieldContext = React.createContext(
   {} as FormFieldContextValue,
 );
 
@@ -37,8 +37,10 @@ const FormField = <
 >({
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
+  const contextValue = React.useMemo(() => ({ name: props.name }), [props.name]);
+
   return (
-    <FormFieldContext.Provider value={{ name: props.name }}>
+    <FormFieldContext.Provider value={contextValue}>
       <Controller {...props} />
     </FormFieldContext.Provider>
   );
@@ -50,10 +52,6 @@ const useFormField = () => {
   const { getFieldState } = useFormContext();
   const formState = useFormState({ name: fieldContext.name });
   const fieldState = getFieldState(fieldContext.name, formState);
-
-  if (!fieldContext) {
-    throw new Error("useFormField should be used within <FormField>");
-  }
 
   const { id } = itemContext;
 
@@ -71,15 +69,16 @@ type FormItemContextValue = {
   id: string;
 };
 
-const FormItemContext = React.createContext<FormItemContextValue>(
+const FormItemContext = React.createContext(
   {} as FormItemContextValue,
 );
 
 function FormItem({ className, ...props }: React.ComponentProps<"div">) {
   const id = React.useId();
+  const contextValue = React.useMemo(() => ({ id }), [id]);
 
   return (
-    <FormItemContext.Provider value={{ id }}>
+    <FormItemContext.Provider value={contextValue}>
       <div
         data-slot="form-item"
         className={toClassName("grid gap-6", className)}
@@ -116,7 +115,7 @@ function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
       id={formItemId}
       aria-describedby={
         !error
-          ? `${formDescriptionId}`
+          ? formDescriptionId
           : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
@@ -143,7 +142,7 @@ function FormMessage({
   ...props
 }: React.ComponentProps<"p"> & { dictionary: Record<string, unknown> }) {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message ?? "") : props.children;
+  const body = error ? (error.message ?? "") : props.children;
 
   if (!body) {
     return null;
@@ -168,7 +167,7 @@ function FormMessage({
       className={toClassName("text-destructive text-sm!", className)}
       {...props}
     >
-      {getValue(props.dictionary, String(body))}
+      {typeof body === "string" ? getValue(props.dictionary, body) : body}
     </p>
   );
 }

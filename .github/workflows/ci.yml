@@ -43,6 +43,7 @@ jobs:
     name: Run End-to-End Tests
     runs-on: ubuntu-latest
     needs: quality
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -58,11 +59,31 @@ jobs:
           NODE_NO_WARNINGS: 1
         run: yarn install --frozen-lockfile --ignore-engines 2>&1 | grep -v "^warning"
 
+      - name: Detect e2e specs
+        id: specs
+        # The starter ships no e2e specs. Only install the browser and run
+        # Playwright when specs exist — this keeps the required check a fast,
+        # reliable success and avoids the (slow, occasionally flaky) browser
+        # download on every build until there are actually tests to run.
+        run: |
+          count=$(find apps/web/src/test/e2e -type f \
+            \( -name '*.spec.ts' -o -name '*.spec.tsx' \
+               -o -name '*.test.ts' -o -name '*.test.tsx' \) 2>/dev/null | wc -l)
+          echo "Found $count e2e spec file(s)."
+          if [ "$count" -gt 0 ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        if: steps.specs.outputs.found == 'true'
         working-directory: apps/web
+        timeout-minutes: 8
+        run: npx playwright install --with-deps chromium
 
       - name: Run end-to-end tests
+        if: steps.specs.outputs.found == 'true'
         run: yarn workspace @repo/web run test:e2e
         env:
           SANITY_STUDIO_PROJECT_ID: test
@@ -70,7 +91,7 @@ jobs:
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.specs.outputs.found == 'true'
         with:
           name: playwright-report
           path: apps/web/playwright-report/

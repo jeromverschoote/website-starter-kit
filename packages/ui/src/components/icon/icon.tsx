@@ -13,6 +13,7 @@ import { toClassName } from '../../helpers/format';
 
 type TProps = {
   accessor: string;
+  // `string & {}` keeps the literal suggestions while still accepting any string.
   type?:
     | 'brands'
     | 'light'
@@ -20,14 +21,14 @@ type TProps = {
     | 'solid'
     | 'sharp-light'
     | 'sharp'
-    | string;
+    | (string & {});
   className?: string;
   size?: string;
 };
 
 const Icon: FC<TProps> = (props: TProps): JSX.Element => {
   const {
-    accessor = 'coffee',
+    accessor,
     type = 'sharp-light',
     className = 'text-lg',
     size = '16px',
@@ -64,7 +65,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     case 'brands':
       if (
         !(library as unknown as { definitions: Record<string, unknown> })
-          ?.definitions.fab
+          .definitions.fab
       ) {
         library.add(fab);
       }
@@ -78,7 +79,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     case 'sharp-light':
       if (
         !(library as unknown as { definitions: Record<string, unknown> })
-          ?.definitions.fasl
+          .definitions.fasl
       ) {
         library.add(fasl);
       }
@@ -93,7 +94,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     case 'sharp':
       if (
         !(library as unknown as { definitions: Record<string, unknown> })
-          ?.definitions.fass
+          .definitions.fass
       ) {
         library.add(fass);
       }

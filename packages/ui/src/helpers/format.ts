@@ -12,6 +12,9 @@ export const handleGenerateInitialsFromName = (name: string) => {
   return result;
 };
 
+// T is an intentional caller-side assertion: callers declare the shape they
+// expect from the form. The helper cannot validate it at runtime.
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export const handleConvertFormDataToObject = <T>(formData: FormData) => {
   let data = {};
   const keys = formData.keys();

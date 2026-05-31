@@ -16,7 +16,10 @@ export const useDictionary = () => {
   }, [locale]);
 
   useEffect(() => {
-    handleFetchDictionary();
+    // Async, locale-dependent data fetch — setState runs after the await, not
+    // synchronously, so it does not trigger the cascading renders the rule guards.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void handleFetchDictionary();
   }, [handleFetchDictionary]);
 
   return { dictionary };

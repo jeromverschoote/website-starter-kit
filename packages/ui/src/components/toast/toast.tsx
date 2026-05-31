@@ -2,7 +2,7 @@
 
 import {
   ComponentPropsWithoutRef,
-  ElementRef,
+  ComponentRef,
   forwardRef,
   ReactElement,
 } from "react";
@@ -16,7 +16,7 @@ import { X } from "lucide-react";
 const ToastProvider = ToastPrimitives.Provider;
 
 const ToastViewport = forwardRef<
-  ElementRef<typeof ToastPrimitives.Viewport>,
+  ComponentRef<typeof ToastPrimitives.Viewport>,
   ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Viewport
@@ -47,7 +47,7 @@ const toastVariants = cva(
 );
 
 const Toast = forwardRef<
-  ElementRef<typeof ToastPrimitives.Root>,
+  ComponentRef<typeof ToastPrimitives.Root>,
   ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
     VariantProps<typeof toastVariants>
 >(({ className, variant, ...props }, ref) => {
@@ -62,7 +62,7 @@ const Toast = forwardRef<
 Toast.displayName = ToastPrimitives.Root.displayName;
 
 const ToastAction = forwardRef<
-  ElementRef<typeof ToastPrimitives.Action>,
+  ComponentRef<typeof ToastPrimitives.Action>,
   ComponentPropsWithoutRef<typeof ToastPrimitives.Action>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Action
@@ -77,7 +77,7 @@ const ToastAction = forwardRef<
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 
 const ToastClose = forwardRef<
-  ElementRef<typeof ToastPrimitives.Close>,
+  ComponentRef<typeof ToastPrimitives.Close>,
   ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Close
@@ -95,7 +95,7 @@ const ToastClose = forwardRef<
 ToastClose.displayName = ToastPrimitives.Close.displayName;
 
 const ToastTitle = forwardRef<
-  ElementRef<typeof ToastPrimitives.Title>,
+  ComponentRef<typeof ToastPrimitives.Title>,
   ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
@@ -107,7 +107,7 @@ const ToastTitle = forwardRef<
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
 
 const ToastDescription = forwardRef<
-  ElementRef<typeof ToastPrimitives.Description>,
+  ComponentRef<typeof ToastPrimitives.Description>,
   ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description

@@ -1,6 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
+  // Starter-kit default: the e2e suite ships empty and the `test:e2e` script
+  // runs with `--pass-with-no-tests`, so the CI gate stays green until you add
+  // specs under this directory. Add real specs here to give the gate teeth.
   testDir: './src/test/e2e',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,

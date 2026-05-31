@@ -10,7 +10,8 @@
     "web:build": "yarn workspace web run build",
     "test": "turbo test",
     "test:coverage": "turbo test:coverage",
-    "prepare": "husky"
+    "init:project": "tsx scripts/init-project.ts",
+    "prepare": "husky && node scripts/init-banner.mjs"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.10",
@@ -29,6 +30,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "resolutions": {
+    "@types/minimatch": "5.1.2"
   },
   "packageManager": "yarn@1.22.22",
   "workspaces": [
