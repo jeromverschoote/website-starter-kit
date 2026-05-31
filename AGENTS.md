@@ -15,6 +15,11 @@ a PR into `main`. The `new-feature` skill codifies this loop end to end, and
 `.github/PULL_REQUEST_TEMPLATE.md` is the PR body. The PR (gated by CI + branch
 protection), not the local edit, is the unit of work.
 
+Bounded, verifiable chores (a section from a Sanity model, copy/dictionary
+updates, dependency bumps) can run as remote/background runs that open PRs;
+architectural and exploratory work stays at the keyboard. See
+[`docs/delegating-work.md`](docs/delegating-work.md).
+
 ## New repository setup
 
 This is a template. When working in a repository that was just created from it —

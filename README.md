@@ -100,8 +100,10 @@ packages/
   tailwind-config/  Shared Tailwind config
   typescript-config/  Shared tsconfig presets
 docs/
-  init-checklist.md     New-repo setup checklist
-  react-guidelines.md   React engineering guidelines
+  init-checklist.md       New-repo setup checklist
+  component-guidelines.md Component/view/section structure conventions
+  react-guidelines.md     React engineering guidelines
+  delegating-work.md      What to hand to async/remote runs vs keep at the keyboard
 ```
 
 ## Conventions
