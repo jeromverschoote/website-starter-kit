@@ -1,0 +1,30 @@
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import {{ camelCase name }} from './index';
+
+describe('{{ camelCase name }} source', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('returns [undefined, data] on success', async () => {
+    const data = { ok: true };
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({ json: () => Promise.resolve(data) }),
+    );
+
+    const [error, result] = await {{ camelCase name }}.get('/items');
+
+    expect(error).toBeUndefined();
+    expect(result).toEqual(data);
+  });
+
+  it('returns [Error, undefined] when the fetch rejects', async () => {
+    const failure = new Error('network down');
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(failure));
+
+    const [error, result] = await {{ camelCase name }}.get('/items');
+
+    expect(error).toBe(failure);
+    expect(result).toBeUndefined();
+  });
+});

@@ -82,6 +82,9 @@ and on your host, set the same values as secrets.
 | `yarn workspace @repo/sanity types:generate` | Regenerate Sanity types |
 | `yarn init:project` | Scaffold a new project from this template |
 | `turbo gen component` | Scaffold a UI component (folder, test, index, exports) |
+| `turbo gen view --args <feature>` | Scaffold a page/view + route + dictionary keys |
+| `turbo gen section --args <name>` | Scaffold a Sanity section + register it |
+| `turbo gen data-source --args <name>` | Scaffold a data-layer source + export |
 
 ## Project structure
 

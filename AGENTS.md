@@ -20,12 +20,16 @@ pointed at it.
 
 ## Scaffolding new units
 
-Do not hand-roll the files for repeatable units — run the generator. `turbo gen
-component` scaffolds a UI component (folder + test + index + optional styles) and
-registers it in `packages/ui` exports. Headless: `turbo gen component --args
-<name> <withStyles:true|false>`. The `scaffold` skill documents the available
-generators; run `turbo gen` to list them. This keeps generated code consistent
-whether a human or an agent creates it.
+Do not hand-roll the files for repeatable units — run the generator. Each
+encodes this repo's layout, naming, and registration so output is identical
+whether a human or an agent runs it:
+
+- `turbo gen component` — UI component in `packages/ui` (+ package.json export)
+- `turbo gen view --args <feature>` — page/view in `apps/web` (+ route + dictionary keys)
+- `turbo gen section --args <name>` — Sanity section in `apps/sanity` (+ schema index)
+- `turbo gen data-source --args <name>` — data module in `packages/data` (+ export)
+
+The `scaffold` skill documents the prompts/args; run `turbo gen` to list them.
 
 ## Component & view structure
 

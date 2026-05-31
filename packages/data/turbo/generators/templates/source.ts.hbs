@@ -1,0 +1,21 @@
+import { withError } from '../../helpers/format';
+
+const BASE_URL = process.env.{{ constantCase name }}_API_URL ?? '';
+
+type TResult<T> = Promise<[Error | undefined, T | undefined]>;
+
+/**
+ * Fetches `path` from the {{ name }} API and returns an error-first tuple,
+ * matching the other sources (e.g. `@repo/data/sanity`).
+ */
+const get = <T>(path: string): TResult<T> => {
+  return withError(
+    fetch(`${BASE_URL}${path}`).then((response) => response.json() as Promise<T>),
+  );
+};
+
+const {{ camelCase name }} = {
+  get,
+};
+
+export default {{ camelCase name }};

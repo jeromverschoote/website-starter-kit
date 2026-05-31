@@ -1,6 +1,6 @@
 ---
 name: scaffold
-description: Scaffold new in-project units (UI components, and more over time) with `turbo gen` instead of hand-rolling files. Use whenever creating a new UI component in packages/ui, or when the user asks to "add/create a component". Generators encode this repo's file layout, naming, and exports registration so output is consistent every time.
+description: Scaffold new in-project units (UI component, page/view, Sanity section, data source) with `turbo gen` instead of hand-rolling files. Use whenever creating any of those in this repo, or when the user asks to "add/create a component/page/view/section/data source". Generators encode this repo's file layout, naming, and registration (package.json exports, schema index, dictionary keys) so output is consistent every time.
 ---
 
 # Scaffolding with `turbo gen`
@@ -33,8 +33,37 @@ turbo gen component --args hero-banner true   # include <name>.styles.ts
 extend the generated test. Then verify: `yarn workspace @repo/ui lint` and
 `yarn workspace @repo/ui test`.
 
-## Other units
+## Page / view (apps/web)
 
-Generators for views/pages, Sanity sections/models, and data sources follow the
-same pattern and live in each workspace's `turbo/generators/config.ts`. Run
-`turbo gen` with no name to see everything available.
+Creates `views/<feature>/landing/` (a `<feature>-landing-page.tsx` that composes
+a `<Suspense>`'d async section, plus `.queries.ts`, `.styles.ts`, `index.ts`, and
+a `_components/<feature>-intro/` async section that owns its Sanity fetch), the
+matching `app/[locale]/<feature>/` route (`page.ts` + `loading.tsx`), and the
+view's `view.<feature>` dictionary keys in `dictionaries/en.json`.
+
+```bash
+turbo gen view --args about     # <feature> (kebab-case)
+```
+
+## Sanity section (apps/sanity)
+
+Creates `src/sections/<name>-section.ts` (a section schema via `asSectionModel`)
+and registers it in `src/sections/index.ts` (import + `allSectionModels` +
+`sectionEntries`). Pass the base name without the `-section` suffix.
+
+```bash
+turbo gen section --args feature-grid
+```
+
+## Data source (packages/data)
+
+Creates `src/sources/<name>/` (an error-wrapped fetcher + test) and registers
+`"./<name>"` in `packages/data/package.json` exports (imports as
+`@repo/data/<name>`).
+
+```bash
+turbo gen data-source --args strapi
+```
+
+After generating any unit, fill in the body and verify with the workspace's
+`lint` / `check-types` / `test`. Run `turbo gen` with no name to list everything.
