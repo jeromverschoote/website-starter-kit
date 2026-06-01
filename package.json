@@ -17,19 +17,19 @@
     "prepare": "husky && node scripts/init-banner.mjs"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.10",
-    "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/cli": "^4.3.0",
+    "@tailwindcss/postcss": "^4.3.0",
     "react": "19.2.2",
     "react-dom": "19.2.2",
-    "styled-components": "^6",
-    "tailwindcss": "^4.1.10"
+    "styled-components": "^6.4.2",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "husky": "^9.1.7",
-    "prettier": "^3.5.3",
-    "tsx": "^4.20.4",
-    "turbo": "^2.4.4",
-    "typescript": "^5.8.2"
+    "prettier": "^3.8.3",
+    "tsx": "^4.22.4",
+    "turbo": "^2.9.16",
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=18"

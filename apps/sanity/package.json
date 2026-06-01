@@ -31,26 +31,26 @@
     "@fortawesome/sharp-regular-svg-icons": "^6.7.2",
     "@fortawesome/sharp-solid-svg-icons": "^6.7.2",
     "@fortawesome/sharp-thin-svg-icons": "^6.7.2",
-    "@sanity/document-internationalization": "^3.3.1",
-    "@sanity/icons": "^3.7.0",
-    "@sanity/vision": "^5.17.1",
-    "eslint-config-prettier": "^10.1.1",
+    "@sanity/document-internationalization": "^3.3.3",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/vision": "^5.28.0",
+    "eslint-config-prettier": "^10.1.8",
     "react": "19.2.2",
     "react-dom": "19.2.2",
-    "sanity": "^5.17.1",
-    "sanity-plugin-media": "^3.0.2",
+    "sanity": "^5.28.0",
+    "sanity-plugin-media": "^3.0.5",
     "sanity-plugin-vercel-deploy": "^3.3.4",
     "sanity-plugin-webhooks-trigger": "^0.3.1",
-    "styled-components": "^6.1.17"
+    "styled-components": "^6.4.2"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
-    "@turbo/gen": "^2.4.2",
+    "@turbo/gen": "^2.9.16",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "eslint": "^9.9.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.1.6"
+    "eslint": "^9.39.4",
+    "prettier": "^3.8.3",
+    "typescript": "^5.9.3"
   },
   "prettier": {
     "semi": true,
