@@ -17,7 +17,7 @@ const dictionaries: Record<TLocale, () => Promise<TDictionary>> =
           (module: { default: TDictionary }) => module.default,
         ),
     ]),
-  ) as Record<TLocale, () => Promise<TDictionary>>;
+  );
 
 export type { TDictionary };
 
