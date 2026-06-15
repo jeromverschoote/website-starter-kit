@@ -34,6 +34,9 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     size = '16px',
   } = props;
 
+  // Cast once at the top so each icon use-site stays clean.
+  const iconName = accessor as unknown as IconName;
+
   let component = <div></div>;
 
   switch (type) {
@@ -42,7 +45,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     //     library.add(fas);
     //   }
     //   component = (
-    //     <FontAwesomeIcon icon={["fas", accessor as IconName]} className={className} />
+    //     <FontAwesomeIcon icon={["fas", iconName]} className={className} />
     //   );
     //   break;
     // case "regular":
@@ -50,7 +53,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     //     library.add(far);
     //   }
     //   component = (
-    //     <FontAwesomeIcon icon={["far", accessor as IconName]} className={className} />
+    //     <FontAwesomeIcon icon={["far", iconName]} className={className} />
     //   );
     //   break;
     // case 'light':
@@ -59,7 +62,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
     //   }
 
     //   component = (
-    //     <FontAwesomeIcon icon={['fal', accessor]} className={className} />
+    //     <FontAwesomeIcon icon={['fal', iconName]} className={className} />
     //   );
     //   break;
     case 'brands':
@@ -71,7 +74,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
       }
       component = (
         <FontAwesomeIcon
-          icon={['fab', accessor as IconName]}
+          icon={['fab', iconName]}
           className={className}
         />
       );
@@ -86,7 +89,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
 
       component = (
         <FontAwesomeIcon
-          icon={['fasl', accessor as IconName]}
+          icon={['fasl', iconName]}
           className={className}
         />
       );
@@ -101,7 +104,7 @@ const Icon: FC<TProps> = (props: TProps): JSX.Element => {
 
       component = (
         <FontAwesomeIcon
-          icon={['fass', accessor as IconName]}
+          icon={['fass', iconName]}
           className={className}
         />
       );

@@ -7,8 +7,8 @@
     "src/config/apollo.ts"
   ],
   "dependencies": {
-    "@sanity/client": "^7.20.0",
-    "next-sanity": "^9.12.0"
+    "@sanity/client": "^7.22.1",
+    "next-sanity": "^9.12.3"
   },
   "scripts": {
     "test": "vitest run",
@@ -18,15 +18,15 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@turbo/gen": "^2.4.2",
-    "@types/eslint": "^8.56.5",
-    "@types/node": "^22.9.0",
+    "@turbo/gen": "^2.9.18",
+    "@types/eslint": "^8.56.12",
+    "@types/node": "^22.19.21",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@vitest/coverage-v8": "^3.0.0",
+    "@vitest/coverage-v8": "^3.2.6",
     "eslint": "^9",
     "typescript": "^5",
-    "vitest": "^3.0.0"
+    "vitest": "^3.2.6"
   },
   "exports": {
     "./sanity": "./src/sources/sanity/index.ts",
