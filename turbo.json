@@ -2,7 +2,6 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "globalEnv": [
-    "FONTAWESOME_NPM_AUTH_TOKEN",
     "NEXT_WEBHOOK_API_TOKEN",
     "GOOGLE_API_KEY",
     "GOOGLE_TAG_MANAGER_ID",

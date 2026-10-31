@@ -1,362 +1,139 @@
-// import { SearchIcon } from '@sanity/icons';
-// import { Card, Autocomplete, Select, Label, Flex, Box, Text } from '@sanity/ui';
-// import { useEffect, useMemo, useState } from 'react';
-// import Icon from '../icon';
-// import { set, unset, ObjectInputProps } from 'sanity';
-
-// const FONTAWESOME_METADATA_URL =
-//   'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/refs/heads/master/metadata/icons.json';
-
-// type TProps = ObjectInputProps<{
-//   type?: string;
-//   accessor?: string;
-// }>;
-
-// const defaultValue = {
-//   type: 'regular',
-//   accessor: undefined,
-// };
-
-// const IconSelectInput = (props: TProps) => {
-//   const { value = defaultValue, onChange } = props;
-
-//   const [data, setData] = useState<any>([]);
-//   const [isFetching, setIsFetching] = useState(false);
-
-//   const types: {
-//     [key: string]: { title: string; items: { label: string; value: string }[] };
-//   } = useMemo(
-//     () => ({
-//       base: {
-//         title: 'Default',
-//         items: [
-//           { label: 'Solid', value: 'solid' },
-//           { label: 'Regular', value: 'regular' },
-//           { label: 'Light', value: 'light' },
-//           { label: 'Thin', value: 'thin' },
-//         ],
-//       },
-//       sharp: {
-//         title: 'Sharp',
-//         items: [
-//           { label: 'Solid', value: 'sharp-solid' },
-//           { label: 'Regular', value: 'sharp-regular' },
-//           { label: 'Light', value: 'sharp-light' },
-//           { label: 'Thin', value: 'sharp-thin' },
-//         ],
-//       },
-//       duotone: {
-//         title: 'Duotone',
-//         items: [
-//           // {label: 'Solid', value: 'duotone-solid'},
-//           { label: 'Regular', value: 'duotone-regular' },
-//           { label: 'Light', value: 'duotone-light' },
-//           { label: 'Thin', value: 'duotone-thin' },
-//         ],
-//       },
-//       // 'duotone-sharp': {
-//       //   title: 'Sharp Duotone',
-//       //   items: [
-//       //     {label: 'Solid', value: 'duotone-sharp-solid'},
-//       //     {label: 'Regular', value: 'duotone-sharp-regular'},
-//       //     {label: 'Light', value: 'duotone-sharp-light'},
-//       //     {label: 'Thin', value: 'duotone-sharp-thin'},
-//       //   ],
-//       // },
-//       brands: {
-//         title: 'Brands',
-//         items: [{ label: 'Brands', value: 'brands' }],
-//       },
-//     }),
-//     [],
-//   );
-
-//   const handleFetchData = async () => {
-//     setIsFetching(true);
-
-//     const response = await fetch(FONTAWESOME_METADATA_URL);
-//     const results = await response.json();
-
-//     setData(
-//       Object.keys(results).map((key) => {
-//         const icon = results[key];
-
-//         return { key, styles: icon.styles };
-//       }),
-//     );
-//     setIsFetching(false);
-//   };
-
-//   const handleFilterOptions = (type: string | undefined) => {
-//     let results = [];
-
-//     if (type === 'brands') {
-//       results = data.filter((item: any) => item.styles.includes('brands'));
-//     } else {
-//       results = data.filter((item: any) => item.styles.includes('solid'));
-//     }
-
-//     return results.map((result: any) => ({ value: result.key }));
-//   };
-
-//   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-//     const currentValue = event.target.value;
-//     onChange(
-//       currentValue
-//         ? set({ ...value, type: currentValue, accessor: undefined })
-//         : unset(),
-//     );
-//   };
-
-//   const handleAutocompleteChange = (currentValue: string) => {
-//     onChange(
-//       currentValue ? set({ ...value, accessor: currentValue }) : unset(),
-//     );
-//   };
-
-//   // Load initial data.
-//   useEffect(() => {
-//     handleFetchData();
-//   }, []);
-
-//   return (
-//     <div>
-//       <Card paddingTop={3} paddingBottom={4}>
-//         <Card paddingBottom={3}>
-//           <Label>Style</Label>
-//         </Card>
-//         <Select value={value.type || ''} onChange={handleSelectChange}>
-//           {Object.keys(types).map((key) => {
-//             const group = types[key];
-
-//             return (
-//               <optgroup key={group.title} label={group.title}>
-//                 {group.items.map((item) => (
-//                   <option key={item.value} value={item.value}>
-//                     {item.label}
-//                   </option>
-//                 ))}
-//               </optgroup>
-//             );
-//           })}
-//         </Select>
-//       </Card>
-//       <Card>
-//         <Card paddingBottom={3}>
-//           <Label>Accessor</Label>
-//         </Card>
-//         <Autocomplete
-//           id="icon-select-input"
-//           icon={SearchIcon}
-//           placeholder="Search icons"
-//           options={handleFilterOptions(value.type)}
-//           value={value.accessor || ''}
-//           onChange={handleAutocompleteChange}
-//           openButton
-//           loading={isFetching}
-//           renderValue={(_, option: any) => option?.value ?? ''}
-//           renderOption={(option) => (
-//             <Card as="button">
-//               <Flex align="center">
-//                 <Box padding={1} width={20}>
-//                   <Icon type={value.type as any} accessor={option.value} />
-//                 </Box>
-//                 <Box flex={1} padding={2} paddingLeft={1}>
-//                   <Text>{option.value}</Text>
-//                 </Box>
-//               </Flex>
-//             </Card>
-//           )}
-//         />
-//       </Card>
-//     </div>
-//   );
-// };
-
-// export default IconSelectInput;
-
+import { icons } from '@phosphor-icons/core';
 import { SearchIcon } from '@sanity/icons';
-import { Card, Autocomplete, Select, Label, Flex, Box, Text } from '@sanity/ui';
-import { useEffect, useMemo, useState } from 'react';
-import Icon from '../icon';
-import { set, unset, ObjectInputProps } from 'sanity';
+import {
+  Autocomplete,
+  Card,
+  Flex,
+  Label,
+  Select,
+  Stack,
+  Text,
+} from '@sanity/ui';
+import { ObjectInputProps, set, unset } from 'sanity';
 
-const FONTAWESOME_METADATA_URL =
-  'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/refs/heads/master/metadata/icons.json';
+import { FONT_AWESOME_NAMES } from '@repo/ui/icon-names';
+
+import Icon, { DEFAULT_WEIGHT, ICON_WEIGHTS, toIconWeight } from '../icon';
 
 type TProps = ObjectInputProps<{
   type?: string;
   accessor?: string;
 }>;
 
-const defaultValue = {
-  type: 'regular',
-  accessor: undefined,
-};
+type TOption = { value: string; search: string };
 
+// Every Phosphor icon (31 Oct 2026; Font Awesome Pro before), about 1,500,
+// searchable by name, tag and category. The list ships with the studio, so
+// the picker needs no request — Font Awesome's picker fetched its metadata
+// from GitHub on every mount.
+const OPTIONS: TOption[] = icons.map((icon) => ({
+  value: icon.name,
+  search: [icon.name, ...icon.tags, ...icon.categories].join(' ').toLowerCase(),
+}));
+
+const NAMES = new Set(OPTIONS.map((option) => option.value));
+
+const toMatch = (query: string, option: TOption) =>
+  query
+    .toLowerCase()
+    .split(/\s+/)
+    .every((word) => option.search.includes(word));
+
+/**
+ * The icon picker: a search over every icon with a preview, and the weight
+ * (thin to fill). Stored as `{ type: weight, accessor: name }`, the shape the
+ * site reads.
+ */
 const IconSelectInput = (props: TProps) => {
-  const { value = defaultValue, onChange } = props;
+  const { value, onChange } = props;
 
-  const [data, setData] = useState<any>([]);
-  const [isFetching, setIsFetching] = useState(false);
-  const [inputValue, setInputValue] = useState(value.accessor ?? '');
+  const isUnknown = Boolean(value?.accessor && !NAMES.has(value.accessor));
+  // An old Font Awesome name carries a Font Awesome style ("regular"), not a
+  // chosen weight: a new pick starts in the site's default weight.
+  const weight = isUnknown ? DEFAULT_WEIGHT : toIconWeight(value?.type);
+  // What the migration turns an old Font Awesome name into.
+  const successor = isUnknown
+    ? FONT_AWESOME_NAMES[value?.accessor ?? '']
+    : undefined;
 
-  // ✅ preserve typed value if props.value changes
-  useEffect(() => {
-    setInputValue(value.accessor ?? '');
-  }, [value.accessor]);
+  // Opening the list makes the chosen name the query (Sanity UI's
+  // Autocomplete), which would show that one icon, or none for an old name:
+  // the list opens whole, and typing filters it.
+  const toVisible = (query: string, option: TOption) =>
+    query === value?.accessor || toMatch(query, option);
 
-  // ✅ group/type definitions
-  const types: {
-    [key: string]: { title: string; items: { label: string; value: string }[] };
-  } = useMemo(
-    () => ({
-      base: {
-        title: 'Default',
-        items: [
-          { label: 'Solid', value: 'solid' },
-          { label: 'Regular', value: 'regular' },
-          { label: 'Light', value: 'light' },
-          { label: 'Thin', value: 'thin' },
-        ],
-      },
-      sharp: {
-        title: 'Sharp',
-        items: [
-          { label: 'Solid', value: 'sharp-solid' },
-          { label: 'Regular', value: 'sharp-regular' },
-          { label: 'Light', value: 'sharp-light' },
-          { label: 'Thin', value: 'sharp-thin' },
-        ],
-      },
-      duotone: {
-        title: 'Duotone',
-        items: [
-          { label: 'Regular', value: 'duotone-regular' },
-          { label: 'Light', value: 'duotone-light' },
-          { label: 'Thin', value: 'duotone-thin' },
-        ],
-      },
-      brands: {
-        title: 'Brands',
-        items: [{ label: 'Brands', value: 'brands' }],
-      },
-    }),
-    [],
-  );
+  const handleIcon = (accessor: string) =>
+    onChange(accessor ? set({ type: weight, accessor }) : unset());
 
-  const handleFetchData = async () => {
-    setIsFetching(true);
-    const response = await fetch(FONTAWESOME_METADATA_URL);
-    const results = await response.json();
-
-    setData(
-      Object.keys(results).map((key) => {
-        const icon = results[key];
-        return { key, styles: icon.styles };
-      }),
-    );
-    setIsFetching(false);
-  };
-
-  const handleFilterOptions = (type: string | undefined) => {
-    // Only show icons for selected type.
-
-    let results: any[] = [];
-    if (type === 'brands') {
-      results = data.filter((item: any) => item.styles.includes('brands'));
-    } else {
-      results = data.filter((item: any) => item.styles.includes('solid'));
-    }
-    return results.map((result: any) => ({ value: result.key }));
-  };
-
-  const handleAutocompleteCommit = (currentValue: string) => {
-    onChange(
-      currentValue ? set({ ...value, accessor: currentValue }) : unset(),
-    );
-    setInputValue(currentValue);
-  };
-
-  useEffect(() => {
-    handleFetchData();
-  }, []);
+  const handleWeight = (event: React.ChangeEvent<HTMLSelectElement>) =>
+    onChange(set({ ...value, type: event.currentTarget.value }));
 
   return (
-    <div>
-      {/* ---- Style Selector ---- */}
-      <Card paddingTop={3} paddingBottom={4}>
-        <Card paddingBottom={3}>
-          <Label>Style</Label>
-        </Card>
-        <Select
-          value={value.type || ''}
-          onChange={(event: any) => {
-            const currentValue = event.target.value;
-            onChange(
-              currentValue
-                ? set({ ...value, type: currentValue, accessor: undefined })
-                : unset(),
-            );
-          }}
-        >
-          {Object.keys(types).map((key) => {
-            const group = types[key];
-            return (
-              <optgroup key={group.title} label={group.title}>
-                {group.items.map((item) => (
-                  <option key={item.value} value={item.value}>
-                    {item.label}
-                  </option>
-                ))}
-              </optgroup>
-            );
-          })}
-        </Select>
-      </Card>
-
-      {/* ---- Icon Selector ---- */}
-      <Card>
-        <Card paddingBottom={3}>
-          <Label>Accessor</Label>
-        </Card>
+    <Stack space={4}>
+      <Stack space={3}>
+        <Label>Icon</Label>
         <Autocomplete
           id="icon-select-input"
           icon={SearchIcon}
-          placeholder="Search icons"
-          options={handleFilterOptions(value.type)} // ✅ full list, let Autocomplete filter
-          value={value.accessor ?? ''}
-          onChange={(currentValue) => {
-            // Handles both option selection and free input
-            handleAutocompleteCommit(currentValue);
-          }}
-          onInput={(event) => {
-            setInputValue((event.target as HTMLInputElement).value); // ✅ track typing
-          }}
-          onBlur={() => handleAutocompleteCommit(inputValue)} // ✅ commit on blur
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleAutocompleteCommit(inputValue); // ✅ commit on Enter
-            }
-          }}
+          placeholder="Search in English: house, tree, leaf, hammer, …"
+          options={OPTIONS}
+          value={value?.accessor ?? ''}
+          filterOption={toVisible}
+          onChange={handleIcon}
           openButton
-          loading={isFetching}
-          renderValue={(_, option: any) => option?.value ?? inputValue ?? ''} // ✅ show free text
-          renderOption={(option) => (
-            <Card as="button">
-              <Flex align="center">
-                <Box padding={1} width={20}>
-                  <Icon type={value.type as any} accessor={option.value} />
-                </Box>
-                <Box flex={1} padding={2} paddingLeft={1}>
-                  <Text>{option.value}</Text>
-                </Box>
+          renderValue={(name) => name}
+          renderOption={(option: TOption) => (
+            <Card as="button" padding={2}>
+              <Flex align="center" gap={3}>
+                <Icon accessor={option.value} type={weight} />
+                <Text size={1}>{option.value}</Text>
               </Flex>
             </Card>
           )}
         />
-      </Card>
-    </div>
+      </Stack>
+
+      <Stack space={3}>
+        <Label>Weight</Label>
+        <Select value={weight} onChange={handleWeight}>
+          {ICON_WEIGHTS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Select>
+      </Stack>
+
+      {value?.accessor && !isUnknown && (
+        <Card padding={3} radius={2} border>
+          <Flex align="center" gap={3}>
+            <Icon accessor={value.accessor} type={weight} size={32} />
+            <Text size={1} muted>
+              {value.accessor}
+            </Text>
+          </Flex>
+        </Card>
+      )}
+
+      {isUnknown && (
+        <Card padding={3} radius={2} tone="caution" border>
+          {successor ? (
+            <Flex align="center" gap={3}>
+              <Icon accessor={successor} type={DEFAULT_WEIGHT} size={32} />
+              <Text size={1}>
+                “{value?.accessor}” is an old Font Awesome name. The site shows
+                “{successor}” for it; pick it above to keep it, or choose
+                another.
+              </Text>
+            </Flex>
+          ) : (
+            <Text size={1}>
+              “{value?.accessor}” is not an icon in the list. Pick one above.
+            </Text>
+          )}
+        </Card>
+      )}
+    </Stack>
   );
 };
 

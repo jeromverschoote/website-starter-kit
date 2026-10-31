@@ -35,14 +35,6 @@ export default defineConfig({
   resolve: {
     alias: {
       helpers: path.resolve(__dirname, 'src/helpers'),
-      '@fortawesome/react-fontawesome': mocks('fontawesome.tsx'),
-      '@fortawesome/fontawesome-svg-core': mocks('fontawesome-core.ts'),
-      '@fortawesome/pro-solid-svg-icons': mocks('fontawesome-icons.ts'),
-      '@fortawesome/pro-regular-svg-icons': mocks('fontawesome-icons.ts'),
-      '@fortawesome/pro-light-svg-icons': mocks('fontawesome-icons.ts'),
-      '@fortawesome/free-brands-svg-icons': mocks('fontawesome-icons.ts'),
-      '@fortawesome/sharp-light-svg-icons': mocks('fontawesome-icons.ts'),
-      '@fortawesome/sharp-solid-svg-icons': mocks('fontawesome-icons.ts'),
       '@portabletext/react': mocks('portabletext.tsx'),
       'react-plock': mocks('react-plock.tsx'),
       'next/link': mocks('next-link.tsx'),

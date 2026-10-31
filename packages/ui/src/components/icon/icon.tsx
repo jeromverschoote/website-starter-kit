@@ -1,127 +1,74 @@
-import { FC, JSX } from 'react';
+// Every Phosphor icon is imported, about 1,500, because editors pick an icon
+// by name in Sanity and this component has to be able to draw whichever one
+// they picked (31 Oct 2026; Font Awesome Pro before, which imported whole
+// style packs for the same reason).
+//
+// Unlike the sibling projects this template is copied from, the Icon is not
+// `server-only` here: this package's own primitives are client components
+// that draw icons (select, link) and so is the cookie banner. A fork that
+// cares about the client bundle should render the Icon on the server and pass
+// it into the client component as a node, or draw that one glyph inline, and
+// then add `import 'server-only';` above.
+import { createElement } from 'react';
 
-import { IconName, library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-// import { fal } from '@fortawesome/pro-light-svg-icons';
-// import { far } from "@fortawesome/pro-regular-svg-icons";
-// import { fas } from "@fortawesome/pro-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fasl } from '@fortawesome/sharp-light-svg-icons';
-import { fass } from '@fortawesome/sharp-solid-svg-icons';
+import type { Icon as TPhosphorIcon, IconWeight } from '@phosphor-icons/react';
+import * as icons from '@phosphor-icons/react/ssr';
+
+import { FONT_AWESOME_NAMES, toComponentName } from './icon-names';
 
 import { toClassName } from '../../helpers/format';
 
 type TProps = {
-  accessor: string;
-  // `string & {}` keeps the literal suggestions while still accepting any string.
-  type?:
-    | 'brands'
-    | 'light'
-    | 'regular'
-    | 'solid'
-    | 'sharp-light'
-    | 'sharp'
-    | (string & {});
+  /** A Phosphor name in kebab case, such as `caret-down`. */
+  accessor?: string;
+  /** A Phosphor weight; anything else (an old Font Awesome style) is bold. */
+  type?: string;
   className?: string;
   size?: string;
 };
 
-const Icon: FC<TProps> = (props: TProps): JSX.Element => {
+const WEIGHTS = new Set<string>([
+  'thin',
+  'light',
+  'regular',
+  'bold',
+  'fill',
+  'duotone',
+]);
+
+const toIcon = (accessor: string) => {
+  const name = FONT_AWESOME_NAMES[accessor] ?? accessor;
+  return (icons as unknown as Record<string, TPhosphorIcon | undefined>)[
+    toComponentName(name)
+  ];
+};
+
+const Icon = (props: TProps) => {
   const {
-    accessor,
-    type = 'sharp-light',
+    accessor = 'question',
+    type = 'bold',
     className = 'text-lg',
     size = '16px',
   } = props;
 
-  // Cast once at the top so each icon use-site stays clean.
-  const iconName = accessor as unknown as IconName;
+  const Component = toIcon(accessor);
+  const weight = (WEIGHTS.has(type) ? type : 'bold') as IconWeight;
 
-  let component = <div></div>;
-
-  switch (type) {
-    // case "solid":
-    //   if (!(library as unknown as { definitions: Record<string, unknown> })?.definitions.fas) {
-    //     library.add(fas);
-    //   }
-    //   component = (
-    //     <FontAwesomeIcon icon={["fas", iconName]} className={className} />
-    //   );
-    //   break;
-    // case "regular":
-    //   if (!(library as unknown as { definitions: Record<string, unknown> })?.definitions.far) {
-    //     library.add(far);
-    //   }
-    //   component = (
-    //     <FontAwesomeIcon icon={["far", iconName]} className={className} />
-    //   );
-    //   break;
-    // case 'light':
-    //   if (!(library as unknown as { definitions: Record<string, unknown> })?.definitions.fal) {
-    //     library.add(fal);
-    //   }
-
-    //   component = (
-    //     <FontAwesomeIcon icon={['fal', iconName]} className={className} />
-    //   );
-    //   break;
-    case 'brands':
-      if (
-        !(library as unknown as { definitions: Record<string, unknown> })
-          .definitions.fab
-      ) {
-        library.add(fab);
-      }
-      component = (
-        <FontAwesomeIcon
-          icon={['fab', iconName]}
-          className={className}
-        />
-      );
-      break;
-    case 'sharp-light':
-      if (
-        !(library as unknown as { definitions: Record<string, unknown> })
-          .definitions.fasl
-      ) {
-        library.add(fasl);
-      }
-
-      component = (
-        <FontAwesomeIcon
-          icon={['fasl', iconName]}
-          className={className}
-        />
-      );
-      break;
-    case 'sharp':
-      if (
-        !(library as unknown as { definitions: Record<string, unknown> })
-          .definitions.fass
-      ) {
-        library.add(fass);
-      }
-
-      component = (
-        <FontAwesomeIcon
-          icon={['fass', iconName]}
-          className={className}
-        />
-      );
-      break;
-  }
-
+  // A span, not a div: the Icon sits inside buttons and spans, where a div is
+  // not allowed. `flex` keeps the box the div had.
   return (
-    <div
-      aria-hidden="true"
+    <span
       className={toClassName(
         'w-[14px] sm:w-[16px] flex items-center justify-center',
         className,
       )}
       style={{ width: size, height: size }}
     >
-      {component}
-    </div>
+      {/* `1em`, not `100%`: Font Awesome sized its glyph by the font size, so
+          the call sites say `text-xs` and `text-lg` and expect that to carry. */}
+      {Component &&
+        createElement(Component, { weight, size: '1em', 'aria-hidden': true })}
+    </span>
   );
 };
 
