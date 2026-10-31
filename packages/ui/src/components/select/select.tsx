@@ -31,7 +31,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <Icon accessor="chevron-down" className="opacity-50 text-xs" />
+      <Icon accessor="caret-down" className="opacity-50 text-xs" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -49,7 +49,7 @@ const SelectScrollUpButton = React.forwardRef<
     )}
     {...props}
   >
-    <Icon accessor="chevron-up" className="opacity-50 text-xs" />
+    <Icon accessor="caret-up" className="opacity-50 text-xs" />
   </SelectPrimitive.ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
@@ -66,7 +66,7 @@ const SelectScrollDownButton = React.forwardRef<
     )}
     {...props}
   >
-    <Icon accessor="chevron-down" className="opacity-50 text-xs" />
+    <Icon accessor="caret-down" className="opacity-50 text-xs" />
   </SelectPrimitive.ScrollDownButton>
 ));
 SelectScrollDownButton.displayName =
