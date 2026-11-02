@@ -24,8 +24,8 @@
     "@sanity/icons": "^3.7.4",
     "@sanity/vision": "^5.31.1",
     "eslint-config-prettier": "^10.1.8",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "sanity": "^5.31.1",
     "sanity-plugin-media": "^3.0.5",
     "sanity-plugin-vercel-deploy": "^3.3.4",
@@ -35,8 +35,8 @@
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
     "@turbo/gen": "^2.9.18",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "^9.39.4",
     "prettier": "^3.8.4",
     "typescript": "^5.9.3"
