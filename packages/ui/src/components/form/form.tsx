@@ -18,7 +18,7 @@ import {
 
 import { Label } from "../label";
 
-const Form = FormProvider;
+const Form: typeof FormProvider = FormProvider;
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
