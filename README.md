@@ -50,8 +50,6 @@ check suite. The full manual fallback lives in
 - A **Sanity** account (free) for the CMS
 - Optional: **`gh`** CLI for branch protection; accounts for PostHog / Notion /
   Upstash if you use those integrations
-- `@fortawesome/*` packages install from a private registry; the token is
-  preconfigured in [`.npmrc`](.npmrc) — no action needed
 
 ## Environment variables
 

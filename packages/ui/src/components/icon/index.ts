@@ -1,7 +1,7 @@
 /*
 
-  https://fontawesome.com/docs/web/use-with/react/
+  https://phosphoricons.com/
 
  */
 
-export { default } from "./icon";
+export { default } from './icon';

@@ -129,7 +129,7 @@ const PictureViewerProvider: FC<TProps> = (props) => {
                     setIsShown(false);
                   }}
                 >
-                  <Icon accessor="xmark" />
+                  <Icon accessor="x" />
                 </button>
               </div>
               <div className={styles.viewer.navigation.body}>
@@ -142,7 +142,7 @@ const PictureViewerProvider: FC<TProps> = (props) => {
                   disabled={selector === 0}
                   onClick={() => { setSelector((selector as number) - 1); }}
                 >
-                  <Icon accessor="chevron-left" />
+                  <Icon accessor="caret-left" />
                 </button>
                 <button
                   aria-label="next"
@@ -153,7 +153,7 @@ const PictureViewerProvider: FC<TProps> = (props) => {
                   disabled={selector === pictures.length - 1}
                   onClick={() => { setSelector((selector as number) + 1); }}
                 >
-                  <Icon accessor="chevron-right" />
+                  <Icon accessor="caret-right" />
                 </button>
               </div>
             </div>

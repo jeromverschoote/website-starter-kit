@@ -2027,104 +2027,6 @@
   dependencies:
     "@formatjs/fast-memoize" "3.1.6"
 
-"@fortawesome/duotone-light-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/duotone-light-svg-icons/-/duotone-light-svg-icons-6.7.2.tgz#67a47e702e097e65f23faaae74ba912ab6d20e05"
-  integrity sha512-NvNwUtOPWXHYowXS0p+aM0CmWc2TpBekHnRW3lIHkVrqV/v9mQqCDEdfRs5mF5h3FcTXQLpmDGLhIHHvi02mdw==
-
-"@fortawesome/duotone-regular-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/duotone-regular-svg-icons/-/duotone-regular-svg-icons-6.7.2.tgz#08676f4bb0f8b62a23447388f641cadd7bd1555b"
-  integrity sha512-BI9QgRc5YlUUh+VEYL1mg6hg9t8s5nocIZLXd1PoKI5X2+miPwhBTWNpB/IjngovKk9mJW9MB+y1hfkQ6RVCEw==
-
-"@fortawesome/duotone-thin-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/duotone-thin-svg-icons/-/duotone-thin-svg-icons-6.7.2.tgz#420e9d12b4a927a78c78237092aa2e5199835cc8"
-  integrity sha512-7nekKVnHSBNv0L/04Ter0S71ef6Ol0fyLCI3NmI23sff01abjj3n8yJcKn4kW5YKr0gO3M9S9rls2CzGP46LgQ==
-
-"@fortawesome/fontawesome-common-types@6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.7.2.tgz#7123d74b0c1e726794aed1184795dbce12186470"
-  integrity sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg==
-
-"@fortawesome/fontawesome-svg-core@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.7.2.tgz#0ac6013724d5cc327c1eb81335b91300a4fce2f2"
-  integrity sha512-yxtOBWDrdi5DD5o1pmVdq3WMCvnobT0LU6R8RyyVXPvFRd2o79/0NCuQoCjNTeZz9EzA9xS3JxNWfv54RIHFEA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/free-brands-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-6.7.2.tgz#4ebee8098f31da5446dda81edc344025eb59b27e"
-  integrity sha512-zu0evbcRTgjKfrr77/2XX+bU+kuGfjm0LbajJHVIgBWNIDzrhpRxiCPNT8DW5AdmSsq7Mcf9D1bH0aSeSUSM+Q==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/pro-light-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/pro-light-svg-icons-6.7.2.tgz#36f1e606dfdb28be45d19ef917483d2c0b81c50e"
-  integrity sha512-LeUnJCKlVG0oQwTW3oADJq3rkmnSDTg95RWdP46dCQ8pXOaw/8wzhN0XzZ2s/MqE48FNAX7E/XEqs0qMnrTZDA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/pro-regular-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/pro-regular-svg-icons-6.7.2.tgz#69cc0d36b0eea09d1f7ffe96cf71d921a13da0d0"
-  integrity sha512-cJolK4K/s56mHAqOyno24SmjviHqSqG9ZfckBKCpWjJlgDexi61EfET5wWbmmEot6/BqasFjw9S6tudFQUL/PQ==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/pro-solid-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/pro-solid-svg-icons-6.7.2.tgz#049c2e14c9fa542a36e9a3ff448cc0844d717bba"
-  integrity sha512-SY2aP8d7uBlg1rNYznA9w9SVnnQhu3x/C7CCKQYcOGOC1YtPPHgIJhxKGbSzm6RkeJs1HVEfAkORX3J0XB5K9Q==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/pro-thin-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-thin-svg-icons/-/pro-thin-svg-icons-6.7.2.tgz#0948e3e59cbe35e85ecf481906dbd8e799058822"
-  integrity sha512-2MmuchdNCBuNA0/h9Zo75RTw2+U7OimPNRuShW/J509ql0eRowuDHDjFrQhmTdaeTk+lI1FwF63zKYAofsoUMA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/react-fontawesome@^0.2.2":
-  version "0.2.6"
-  resolved "https://npm.fontawesome.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.2.6.tgz#b75d0c7710c646c9bb6b9bb61cb5b8548a9ef2f5"
-  integrity sha512-mtBFIi1UsYQo7rYonYFkjgYKGoL8T+fEH6NGUpvuqtY3ytMsAoDaPo5rk25KuMtKDipY4bGYM/CkmCHA1N3FUg==
-  dependencies:
-    prop-types "^15.8.1"
-
-"@fortawesome/sharp-light-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/sharp-light-svg-icons/-/sharp-light-svg-icons-6.7.2.tgz#d47196aafa0b709516d383fc3b3ffbd4ba88e838"
-  integrity sha512-E4Q+zZbMOPyiZs79kXILJcbaWMz4ydLHQSIIld9DGRSU9tqvmo2o0iFInpHbVxswbYRN4v4sPbqLavq0F8MEyA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/sharp-regular-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/sharp-regular-svg-icons/-/sharp-regular-svg-icons-6.7.2.tgz#8ebca7303254f8d183dc52cd47e517b12f963ae5"
-  integrity sha512-WczljTfGbnyH0pIXeavRUryBWrO6phm+5FnBIW2hZ9EU6BPzMPs2bxqmWRzwWROyh7cEfX0jDFjOrSTKdfs2xA==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/sharp-solid-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/sharp-solid-svg-icons/-/sharp-solid-svg-icons-6.7.2.tgz#0042f1371adb3f99d916b48e2a50d329975212ac"
-  integrity sha512-RQGnMRGpVUAT6HtELU57ZxIBsbYFC60+qfwlyOBjnK/wwQLy0KiYo+GdBYHmnpefMXjotTk5Lp9zPXb2Lnhd4Q==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-"@fortawesome/sharp-thin-svg-icons@^6.7.2":
-  version "6.7.2"
-  resolved "https://npm.fontawesome.com/@fortawesome/sharp-thin-svg-icons/-/sharp-thin-svg-icons-6.7.2.tgz#123b81e4c7d0d12be6439c397dc7c81fe1e8f548"
-  integrity sha512-lsPOZHfYhlU/tVwNLtlcMVXJZRu5XA8jhhIAa4LCjv4UVq1Xqz9vpOvixne1R+rP/ZfBGUyZXSKHU9ysZhyfxw==
-  dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
-
-
 "@hookform/resolvers@^3.1.1":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
@@ -3277,6 +3179,16 @@
     "@parcel/watcher-win32-arm64" "2.5.1"
     "@parcel/watcher-win32-ia32" "2.5.1"
     "@parcel/watcher-win32-x64" "2.5.1"
+
+"@phosphor-icons/core@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@phosphor-icons/core/-/core-2.1.1.tgz#62a4cfbec9772f1a613a647da214fbb96f3ad39d"
+  integrity sha512-v4ARvrip4qBCImOE5rmPUylOEK4iiED9ZyKjcvzuezqMaiRASCHKcRIuvvxL/twvLpkfnEODCOJp5dM4eZilxQ==
+
+"@phosphor-icons/react@^2.1.10":
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/@phosphor-icons/react/-/react-2.1.10.tgz#3a97ec5b7a4b8d53afeb29125bc17e74ed2daf92"
+  integrity sha512-vt8Tvq8GLjheAZZYa+YG/pW7HDbov8El/MANW8pOAz4eGxrwhnbfrQZq0Cp4q8zBEu8NIhHdnr+r8thnfRSNYA==
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
